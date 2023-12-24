@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="icon" type="image/x-icon" href="img/icons/icons8-male-user-100.png">
+</head>
+<body>
+    <canvas id="rainCanvas"></canvas>
+
+    <script>
+      const canvas = document.getElementById('rainCanvas');
+      const ctx = canvas.getContext('2d');
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+  
+      const drops = [];
+  
+      function createDrop() {
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          length: Math.random() * 20 + 5,
+          speed: Math.random() * 5 + 2
+        };
+      }
+  
+      function drawDrop(drop) {
+        ctx.beginPath();
+        ctx.strokeStyle = '#00F'; // Цвет капли
+        ctx.lineWidth = 2;
+        ctx.moveTo(drop.x, drop.y);
+        ctx.lineTo(drop.x, drop.y + drop.length);
+        ctx.stroke();
+      }
+  
+      function updateDrop(drop) {
+        drop.y += drop.speed;
+  
+        if (drop.y - drop.length > canvas.height) {
+          // Если капля вышла за пределы экрана, создаем новую
+          drops.splice(drops.indexOf(drop), 1, createDrop());
+        }
+      }
+  
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+        for (const drop of drops) {
+          drawDrop(drop);
+          updateDrop(drop);
+        }
+  
+        requestAnimationFrame(draw);
+      }
+  
+      // Создаем начальные капли
+      for (let i = 0; i < 10; i++) {
+        drops.push(createDrop());
+      }
+  
+      // Начинаем анимацию
+      draw();
+    </script>
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-row">
+                <a href="./index.html" class="logo nav-list__link--active">
+                    <strong>Baiel's</strong> Portfolio
+                </a>
+                <ul class="nav-list">
+                    <li class="nav-list__item"><a href="project-page.html" class="nav-list__link">Project</a></li>
+                    <li class="nav-list__item"><a href="skills.html" class="nav-list__link">Skills</a></li>
+                    <li class="nav-list__item"><a href="contacts.html" class="nav-list__link">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header__wrapper">
+            <h1 class="header__title"> <strong>Hello, my name is <em>Baiel</em></strong><br>
+                a mobile developer
+            </h1>
+                <div class="header__text">
+                    <p>I am currently studying at iuca.</p>
+                </div>
+                <a href="#!" class="btn">Download CV</a>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            <h2 class="title-1">Projects</h2>
+            <ul class="projects">
+                <li class="project">
+                    <a href="./project-page.html">
+                    <img src="img/projects/01.jpg" alt="Project img" class="project__img">
+                    <h3 class="project__title">Gaming</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="./project-page.html">
+                    <img src="img/projects/01.jpg" alt="Project img" class="project__img">
+                    <h3 class="project__title">Gaming</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="./project-page.htm l">
+                    <img src="img/projects/01.jpg" alt="Project img" class="project__img">
+                    <h3 class="project__title">Gaming</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="./project-page.html">
+                    <img src="img/projects/01.jpg" alt="Project img" class="project__img">
+                    <h3 class="project__title">Gaming</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="./project-page.html">
+                    <img src="img/projects/01.jpg" alt="Project img" class="project__img">
+                    <h3 class="project__title">Gaming</h3>
+                    </a>
+                </li>
+                <li class="project">
+                    <a href="./project-page.html">
+                    <img src="img/projects/01.jpg" alt="Project img" class="project__img">
+                    <h3 class="project__title">Gaming</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrapper">
+                <ul class="social">
+                <li class="social__item">
+                    <a href="#!"><img src="img/icons/vk.svg" alt="icon-vk"></a>
+                </li>
+                <li class="social__item">
+                <a href="#!"><img src="img/icons/instagram.svg" alt="icon-instagram"></a>
+                </li>
+                <li class="social__item">
+                <a href="#!"><img src="img/icons/twitter.svg" alt="icon-twitter"></a>
+                </li>
+                <li class="social__item">
+                <a href="#!"><img src="img/icons/gitHub.svg" alt="icon-github"></a>
+                </li>
+                <li class="social__item">
+                <a href="#!"><img src="img/icons/linkedIn.svg" alt="icon-linkedin"></a>
+                </li>
+                </ul>
+                <div class="copyright">
+                <p>© 2023 baiel's.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
